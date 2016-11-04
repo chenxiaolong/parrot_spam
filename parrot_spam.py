@@ -21,13 +21,20 @@ def main():
 
     items = list()
     for i in range_generator(1, len(sys.argv)):
-        items.append((sys.argv[i], len(sys.argv[i])))
+        if sys.version_info.major >= 3:
+            item = sys.argv[i].encode('UTF-8')
+        else:
+            item = sys.argv[i]
+        items.append((item, len(item)))
 
     avail = 4000
 
     for item, length in repeated(items):
         if avail >= length:
-            sys.stdout.write(item)
+            if sys.version_info.major >= 3:
+                sys.stdout.buffer.write(item)
+            else:
+                sys.stdout.write(item)
             avail -= length
         else:
             break
