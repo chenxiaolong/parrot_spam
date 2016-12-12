@@ -1,8 +1,16 @@
+C
+---
+
+```sh
+gcc parrot_spam.c -o parrot_spam
+./parrot_spam :parrotwave1: :parrotwave2: :parrotwave3: :parrotwave4: :parrotwave5: :parrotwave6: :parrotwave7:
+```
+
 Haskell
 -------
 
 ```sh
-ghc ./parrot_spam.hs
+ghc parrot_spam.hs
 ./parrot_spam :parrotwave1: :parrotwave2: :parrotwave3: :parrotwave4: :parrotwave5: :parrotwave6: :parrotwave7:
 ```
 
