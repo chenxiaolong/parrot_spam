@@ -2,17 +2,13 @@
 
 from __future__ import print_function
 
+import itertools
 import sys
 
 if sys.version_info.major == 2:
     range_generator = xrange
 else:
     range_generator = range
-
-def repeated(generator):
-    while True:
-        for i in generator:
-            yield i
 
 def main():
     if len(sys.argv) < 2:
@@ -29,7 +25,7 @@ def main():
 
     avail = 4000
 
-    for item, length in repeated(items):
+    for item, length in itertools.cycle(items):
         if avail >= length:
             if sys.version_info.major >= 3:
                 sys.stdout.buffer.write(item)
