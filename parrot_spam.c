@@ -7,11 +7,6 @@
 
 int main(int argc, char *argv[])
 {
-    if (argc < 2) {
-        fprintf(stderr, "Nothing to repeat\n");
-        return EXIT_FAILURE;
-    }
-
     char **items = argv + 1;
     int count = argc - 1;
     int *sizes = malloc(count * sizeof(int));
@@ -21,8 +16,17 @@ int main(int argc, char *argv[])
         return EXIT_FAILURE;
     }
 
+    size_t total = 0;
+
     for (int i = 0; i < count; ++i) {
         sizes[i] = strlen(items[i]);
+        total += sizes[i];
+    }
+
+    if (total == 0) {
+        fprintf(stderr, "Nothing to repeat\n");
+        free(sizes);
+        return EXIT_FAILURE;
     }
 
     int avail = MAX_CHARS;
