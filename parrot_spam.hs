@@ -5,7 +5,7 @@ import System.Exit
 main :: IO ()
 main = do
     args <- getArgs
-    when (null $ concat args) $ die "Nothing to repeat"
+    when (all null args) $ die "Nothing to repeat"
 
     putStrLn $ parrots args 4000
 
