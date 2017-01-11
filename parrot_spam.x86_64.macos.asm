@@ -16,7 +16,7 @@ _main:
     push rbp
     mov rbp, rsp
 
-    ; Give us 32 bytes of stack space and leave stack aligned to 16 bytes
+    ; Give us 40 bytes of stack space and leave stack aligned to 16 bytes
     ; [rbp]              : item_count : int32   : 4 bytes
     ; [rbp - 8]          : items      : char ** : 8 bytes
     ; [rbp - 16]         : r12 backup : [data]  : 8 bytes
