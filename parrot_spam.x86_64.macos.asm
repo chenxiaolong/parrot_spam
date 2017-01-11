@@ -7,7 +7,7 @@ extern _write
 
 section .data
 
-    nothing_to_repeat: db "Nothing to repeat", 10, 0
+    nothing_to_repeat: db "Nothing to repeat", 10
     nothing_to_repeat_len: equ $-nothing_to_repeat
 
 section .text
