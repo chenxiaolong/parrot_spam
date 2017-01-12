@@ -1,3 +1,12 @@
+ASM
+---
+
+```sh
+nasm -f macho64 parrot_spam.x86_64.macos.asm
+gcc parrot_spam.x86_64.macos.o -o parrot_spam
+./parrot_spam :parrotwave1: :parrotwave2: :parrotwave3: :parrotwave4: :parrotwave5: :parrotwave6: :parrotwave7:
+```
+
 C
 ---
 
