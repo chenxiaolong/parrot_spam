@@ -45,6 +45,14 @@ dmd parrot_spam.d
 ./parrot_spam :parrotwave1: :parrotwave2: :parrotwave3: :parrotwave4: :parrotwave5: :parrotwave6: :parrotwave7:
 ```
 
+Go
+---
+
+```sh
+go build parrot_spam.go
+./parrot_spam :parrotwave1: :parrotwave2: :parrotwave3: :parrotwave4: :parrotwave5: :parrotwave6: :parrotwave7:
+```
+
 Groovy
 ------
 
