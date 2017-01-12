@@ -53,6 +53,13 @@ javac ParrotSpam.java
 java ParrotSpam :parrotwave1: :parrotwave2: :parrotwave3: :parrotwave4: :parrotwave5: :parrotwave6: :parrotwave7:
 ```
 
+PHP
+---
+
+```sh
+php parrot_spam.php :parrotwave1: :parrotwave2: :parrotwave3: :parrotwave4: :parrotwave5: :parrotwave6: :parrotwave7:
+```
+
 Python
 ------
 
