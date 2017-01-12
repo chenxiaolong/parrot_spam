@@ -10,7 +10,7 @@ gcc parrot_spam.x86_64.macos.o -o parrot_spam
 Bash
 ----
 
-```
+```sh
 bash parrot_spam.sh :parrotwave1: :parrotwave2: :parrotwave3: :parrotwave4: :parrotwave5: :parrotwave6: :parrotwave7:
 ```
 
@@ -30,6 +30,13 @@ g++ parrot_spam.cpp -o parrot_spam
 ./parrot_spam :parrotwave1: :parrotwave2: :parrotwave3: :parrotwave4: :parrotwave5: :parrotwave6: :parrotwave7:
 ```
 
+Groovy
+------
+
+```sh
+groovy parrot_spam.groovy :parrotwave1: :parrotwave2: :parrotwave3: :parrotwave4: :parrotwave5: :parrotwave6: :parrotwave7:
+```
+
 Haskell
 -------
 
@@ -41,7 +48,7 @@ ghc parrot_spam.hs
 Java
 ----
 
-```
+```sh
 javac ParrotSpam.java
 java ParrotSpam :parrotwave1: :parrotwave2: :parrotwave3: :parrotwave4: :parrotwave5: :parrotwave6: :parrotwave7:
 ```
