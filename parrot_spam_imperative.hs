@@ -4,7 +4,7 @@ import Control.Monad.Trans.Loop (foreach, exit)
 import Data.IORef
 import System.Environment       (getArgs)
 import System.Exit              (die)
-import System.Posix.Terminal    (queryTerminal)
+import System.IO                (hIsTerminalDevice, stdout)
 
 main :: IO ()
 main = do
@@ -18,7 +18,7 @@ main = do
 
         liftIO $ putStr parrot >> writeIORef total total'
         
-    isatty <- queryTerminal 1
+    isatty <- hIsTerminalDevice stdout
     when isatty $ putStrLn ""
 
 limit = 4000 :: Int
