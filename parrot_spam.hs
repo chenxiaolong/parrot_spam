@@ -2,14 +2,14 @@ import Control.Monad
 import Data.List
 import System.Environment
 import System.Exit
-import System.Posix.Terminal
+import System.IO
 
 main :: IO ()
 main = do
     args <- getArgs
     when (all null args) $ die "Nothing to repeat"
 
-    isatty <- queryTerminal 1
+    isatty <- hIsTerminalDevice stdout
     let display = if isatty then putStrLn else putStr
     display $ concat $ limitByTotalLength 4000 $ cycle args
 
