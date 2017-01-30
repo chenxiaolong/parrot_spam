@@ -1,5 +1,4 @@
 using System;
-using System.Linq;
 
 class ParrotSpam
 {
@@ -7,8 +6,8 @@ class ParrotSpam
 
     static int Main(string[] args)
     {
-        var parrots = args.Where(a => a.Length > 0).ToList();
-        if (parrots.Count == 0) {
+        var parrots = Array.FindAll(args, a => a.Length > 0);
+        if (parrots.Length == 0) {
             Console.Error.WriteLine("Nothing to repeat");
             return 1;
         }
