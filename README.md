@@ -37,6 +37,14 @@ g++ parrot_spam.cpp -o parrot_spam
 ./parrot_spam :parrotwave1: :parrotwave2: :parrotwave3: :parrotwave4: :parrotwave5: :parrotwave6: :parrotwave7:
 ```
 
+C#
+--
+
+```sh
+mcs ParrotSpam.cs
+mono ParrotSpam.exe :parrotwave1: :parrotwave2: :parrotwave3: :parrotwave4: :parrotwave5: :parrotwave6: :parrotwave7:
+```
+
 D
 ---
 
