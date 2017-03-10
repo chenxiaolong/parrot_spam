@@ -1,17 +1,18 @@
 #! /usr/bin/env ruby
 
-unless ARGV.find { |arg| arg.length > 0 }
+parrots = ARGV.reject(&:empty?)
+if parrots.empty?
   STDERR.puts "Nothing to repeat"
   exit 1
 end
 
 chars_left = 4000
 
-ARGV.cycle.each do |arg|
-  chars_left -= arg.length
+parrots.cycle.each do |p|
+  chars_left -= p.length
   break if chars_left < 0
-  
-  print arg
+
+  print p
 end
 
-puts
+puts if STDOUT.isatty

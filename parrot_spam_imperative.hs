@@ -8,8 +8,8 @@ import System.IO                (hIsTerminalDevice, stdout)
 
 main :: IO ()
 main = do
-    args <- getArgs
-    when (all null args) $ die "Nothing to repeat"
+    args <- filter (not . null) <$> getArgs
+    when (null args) $ die "Nothing to repeat"
 
     total <- newIORef 0
     foreach (cycle args) $ \parrot -> do

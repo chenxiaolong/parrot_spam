@@ -6,8 +6,8 @@ import System.IO
 
 main :: IO ()
 main = do
-    args <- getArgs
-    when (all null args) $ die "Nothing to repeat"
+    args <- filter (not . null) <$> getArgs
+    when (null args) $ die "Nothing to repeat"
 
     isatty <- hIsTerminalDevice stdout
     let display = if isatty then putStrLn else putStr
