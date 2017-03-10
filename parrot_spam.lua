@@ -1,13 +1,13 @@
 #! /usr/bin/env lua
 
-local parrots = {...}
-
-for _, p in ipairs(parrots) do
-    if #p > 0 then goto ok end
+local parrots = {}
+for _, a in ipairs {...} do
+    if #a > 0 then table.insert(parrots, a) end
 end
-io.stderr:write "Nothing to repeat\n"
-os.exit(1)
-::ok::
+if #parrots == 0 then
+    io.stderr:write "Nothing to repeat\n"
+    os.exit(1)
+end
 
 local function spam(ps, lim)
     return coroutine.wrap(function()
