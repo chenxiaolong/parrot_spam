@@ -1,3 +1,5 @@
+What to `brew install` is listed below when not obvious.
+
 ASM
 ---
 
@@ -41,6 +43,7 @@ C#
 --
 
 ```sh
+stack install mono
 mcs ParrotSpam.cs
 mono ParrotSpam.exe :parrotwave1: :parrotwave2: :parrotwave3: :parrotwave4: :parrotwave5: :parrotwave6: :parrotwave7:
 ```
@@ -53,12 +56,24 @@ dmd parrot_spam.d
 ./parrot_spam :parrotwave1: :parrotwave2: :parrotwave3: :parrotwave4: :parrotwave5: :parrotwave6: :parrotwave7:
 ```
 
+F#
+--
+
+```sh
+stack install mono
+fsharpc ParrotSpam.fs
+mono ParrotSpam.exe :parrotwave1: :parrotwave2: :parrotwave3: :parrotwave4: :parrotwave5: :parrotwave6: :parrotwave7:
+```
+
 Go
 ---
 
 ```sh
 go build parrot_spam.go
 ./parrot_spam :parrotwave1: :parrotwave2: :parrotwave3: :parrotwave4: :parrotwave5: :parrotwave6: :parrotwave7:
+
+go build parrot_spam_goroutine.go
+./parrot_spam_goroutine :parrotwave1: :parrotwave2: :parrotwave3: :parrotwave4: :parrotwave5: :parrotwave6: :parrotwave7:
 ```
 
 Groovy
@@ -72,8 +87,16 @@ Haskell
 -------
 
 ```sh
-ghc parrot_spam.hs
+brew install haskell-stack
+stack setup
+# If stack setup fails, xcode-select --install and try again
+
+stack ghc parrot_spam.hs
 ./parrot_spam :parrotwave1: :parrotwave2: :parrotwave3: :parrotwave4: :parrotwave5: :parrotwave6: :parrotwave7:
+
+stack install control-monad-loop
+stack ghc parrot_spam_imperative.hs
+./parrot_spam_imperative :parrotwave1: :parrotwave2: :parrotwave3: :parrotwave4: :parrotwave5: :parrotwave6: :parrotwave7:
 ```
 
 Java
@@ -103,4 +126,11 @@ Python
 
 ```sh
 python parrot_spam.py :parrotwave1: :parrotwave2: :parrotwave3: :parrotwave4: :parrotwave5: :parrotwave6: :parrotwave7:
+```
+
+Scala
+-----
+
+```sh
+./ParrotSpam.scala :parrotwave1: :parrotwave2: :parrotwave3: :parrotwave4: :parrotwave5: :parrotwave6: :parrotwave7:
 ```
