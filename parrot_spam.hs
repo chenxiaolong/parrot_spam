@@ -6,15 +6,13 @@ import System.IO
 
 main :: IO ()
 main = do
-    args <- filter (not . null) <$> getArgs
-    when (null args) $ die "Nothing to repeat"
+    parrots <- filter (not . null) <$> getArgs
+    when (null parrots) $ die "Nothing to repeat"
 
     isatty <- hIsTerminalDevice stdout
-    let display = if isatty then putStrLn else putStr
-    display $ concat $ limitByTotalLength 4000 $ cycle args
+    (if isatty then putStrLn else putStr) $ spam (cycle parrots) 4000
 
-withTotalLengths :: [String] -> [(String, Int)]
-withTotalLengths = zip <*> tail . scanl' (+) 0 . map length
-
-limitByTotalLength :: Int -> [String] -> [String]
-limitByTotalLength lim = map fst . takeWhile ((<= lim) . snd) . withTotalLengths
+spam :: [String] -> Int -> String
+spam (p : ps) avail = case avail - length p of
+    avail' | avail' >= 0 -> p ++ spam ps avail'
+    _                    -> ""
