@@ -43,7 +43,7 @@ C#
 --
 
 ```sh
-stack install mono
+brew install mono
 mcs ParrotSpam.cs
 mono ParrotSpam.exe :parrotwave1: :parrotwave2: :parrotwave3: :parrotwave4: :parrotwave5: :parrotwave6: :parrotwave7:
 ```
@@ -60,7 +60,7 @@ F#
 --
 
 ```sh
-stack install mono
+brew install mono
 fsharpc ParrotSpam.fs
 mono ParrotSpam.exe :parrotwave1: :parrotwave2: :parrotwave3: :parrotwave4: :parrotwave5: :parrotwave6: :parrotwave7:
 ```
