@@ -128,6 +128,15 @@ Python
 python parrot_spam.py :parrotwave1: :parrotwave2: :parrotwave3: :parrotwave4: :parrotwave5: :parrotwave6: :parrotwave7:
 ```
 
+Rust
+----
+
+```sh
+brew install rustup-init
+rustup-init
+rustc parrot_spam.rs -C opt-level=3
+```
+
 Scala
 -----
 
