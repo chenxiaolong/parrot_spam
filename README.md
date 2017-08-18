@@ -134,7 +134,12 @@ Rust
 ```sh
 brew install rustup-init
 rustup-init
+
+# Normal version
 rustc parrot_spam.rs -C opt-level=3
+
+# OsString version to avoid unnecessary UTF-8 conversion
+rustc parrot_spam_os_string.rs -C opt-level=3
 ```
 
 Scala
