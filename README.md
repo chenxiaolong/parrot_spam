@@ -114,6 +114,21 @@ Javascript
 node parrot_spam.js :parrotwave1: :parrotwave2: :parrotwave3: :parrotwave4: :parrotwave5: :parrotwave6: :parrotwave7:
 ```
 
+Perl 5
+------
+
+```sh
+perl parrot_spam.pl :parrotwave1: :parrotwave2: :parrotwave3: :parrotwave4: :parrotwave5: :parrotwave6: :parrotwave7:
+```
+
+Perl 6
+------
+
+```sh
+brew install perl6
+perl6 parrot_spam.p6 :parrotwave1: :parrotwave2: :parrotwave3: :parrotwave4: :parrotwave5: :parrotwave6: :parrotwave7:
+```
+
 PHP
 ---
 
