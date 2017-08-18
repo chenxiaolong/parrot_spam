@@ -56,6 +56,14 @@ dmd parrot_spam.d
 ./parrot_spam :parrotwave1: :parrotwave2: :parrotwave3: :parrotwave4: :parrotwave5: :parrotwave6: :parrotwave7:
 ```
 
+Elixir
+------
+
+```sh
+brew install elixir
+elixir parrot_spam.exs :parrotwave1: :parrotwave2: :parrotwave3: :parrotwave4: :parrotwave5: :parrotwave6: :parrotwave7:
+```
+
 F#
 --
 
@@ -112,6 +120,21 @@ Javascript
 
 ```sh
 node parrot_spam.js :parrotwave1: :parrotwave2: :parrotwave3: :parrotwave4: :parrotwave5: :parrotwave6: :parrotwave7:
+```
+
+Perl 5
+------
+
+```sh
+perl parrot_spam.pl :parrotwave1: :parrotwave2: :parrotwave3: :parrotwave4: :parrotwave5: :parrotwave6: :parrotwave7:
+```
+
+Perl 6
+------
+
+```sh
+brew install perl6
+perl6 parrot_spam.p6 :parrotwave1: :parrotwave2: :parrotwave3: :parrotwave4: :parrotwave5: :parrotwave6: :parrotwave7:
 ```
 
 PHP

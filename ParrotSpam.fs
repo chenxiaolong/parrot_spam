@@ -14,7 +14,7 @@ let main(args : string[]) : int =
     let mutable used = 0
     let consuming(p : string) : bool =
         used <- used + p.Length
-        used < MAX_CHARS
+        used <= MAX_CHARS
 
     parrots |> cycle |> Seq.takeWhile consuming |> Seq.iter Console.Write
     if not Console.IsOutputRedirected then
