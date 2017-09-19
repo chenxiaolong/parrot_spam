@@ -13,6 +13,6 @@ main = do
     (if isatty then putStrLn else putStr) $ spam (cycle parrots) 4000
 
 spam :: [String] -> Int -> String
-spam (p : ps) avail = case avail - length p of
-    avail' | avail' >= 0 -> p ++ spam ps avail'
-    _                    -> ""
+spam (p : ps) avail =
+    let avail' = avail - length p
+    in if avail' >= 0 then p ++ spam ps avail' else ""
