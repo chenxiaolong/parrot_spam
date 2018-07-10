@@ -8,7 +8,7 @@ end
 
 chars_left = 4000
 
-parrots.cycle.each do |p|
+parrots.cycle do |p|
   chars_left -= p.length
   break if chars_left < 0
 
