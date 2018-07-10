@@ -1,7 +1,7 @@
 #! /usr/bin/env ruby
 
 parrots = ARGV.reject(&:empty?)
-if parrots.none?
+if parrots.empty?
   STDERR.puts "Nothing to repeat"
   exit 1
 end
