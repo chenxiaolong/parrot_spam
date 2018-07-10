@@ -7,11 +7,10 @@
 
 (defn spam [parrots char-limit]
   (let [all-spam (new StringBuilder)]
-    (loop [ps (cycle parrots)]
-      (let [p (first ps)]
-        (if (<= (+ (count p) (count all-spam)) char-limit)
-          (do (.append all-spam p)
-              (recur (rest ps)))
-          (.toString all-spam))))))
+    (loop [[p & ps] (cycle parrots)]
+      (when (<= (+ (count p) (count all-spam)) char-limit)
+        (.append all-spam p)
+        (recur ps)))
+    (.toString all-spam)))
 
 (println (spam parrots 4000))
