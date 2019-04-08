@@ -16,7 +16,7 @@ fn spam(mut terms: Json<Vec<String>>) -> Result<String, BadRequest<&'static str>
         return Err(BadRequest(Some("Nothing to repeat")));
     }
 
-    let mut used = 0usize;
+    let mut used = 0;
 
     let result = terms
         .iter()
