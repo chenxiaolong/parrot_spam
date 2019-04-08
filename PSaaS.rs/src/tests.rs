@@ -21,7 +21,7 @@ fn bad_spam() {
         .header(ContentType::JSON)
         .body(r#"[]"#)
         .dispatch();
-    assert_eq!(res.status(), Status::BadRequest);
+    assert_eq!(res.status(), Status::UnprocessableEntity);
     assert_eq!(res.body_string().unwrap(), "Nothing to repeat");
 
     // Invalid JSON data
