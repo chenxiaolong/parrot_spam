@@ -16,15 +16,17 @@ fn spam(mut terms: Json<Vec<String>>) -> Result<String, BadRequest<&'static str>
         return Err(BadRequest(Some("Nothing to repeat")));
     }
 
-    let mut result = String::new();
     let mut used = 0usize;
 
-    for term in terms.iter().cycle().take_while(|&x| {
-        used += x.len();
-        used <= MAX_CHARS
-    }) {
-        result.push_str(term);
-    }
+    let result = terms
+        .iter()
+        .cycle()
+        .take_while(|&x| {
+            used += x.len();
+            used <= MAX_CHARS
+        })
+        .map(|x| { x.as_str() })
+        .collect::<String>();
 
     Ok(result)
 }
