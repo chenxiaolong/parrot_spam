@@ -1,0 +1,9 @@
+[package]
+name = "PSaaS"
+version = "0.1.0"
+authors = ["Andrew Gunnerson <andrew.gunnerson@us.ibm.com>"]
+edition = "2018"
+
+[dependencies]
+rocket = "0.4"
+rocket_contrib = "0.4"
