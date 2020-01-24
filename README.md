@@ -103,16 +103,12 @@ Haskell
 -------
 
 ```sh
-brew install haskell-stack
-stack setup
-# If stack setup fails, xcode-select --install and try again
+# Install Nix by piping the internet into bash.  Good stuff.  Then,
+cd PSaaS.hs
+nix-shell -p 'runghc src/Main.hs'
 
-stack ghc parrot_spam.hs
-./parrot_spam :parrotwave1: :parrotwave2: :parrotwave3: :parrotwave4: :parrotwave5: :parrotwave6: :parrotwave7:
-
-stack install control-monad-loop
-stack ghc parrot_spam_imperative.hs
-./parrot_spam_imperative :parrotwave1: :parrotwave2: :parrotwave3: :parrotwave4: :parrotwave5: :parrotwave6: :parrotwave7:
+# In another terminal,
+curl -X GET -H 'Content-Type: application/json' --data '["parrotwave1","parrotwave2","parrotwave3","parrotwave4","parrotwave5","parrotwave5","parrotwave6","parrotwave7"]' localhost:8080
 ```
 
 Java
