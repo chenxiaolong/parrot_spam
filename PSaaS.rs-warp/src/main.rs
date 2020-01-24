@@ -5,11 +5,17 @@ use std::env;
 use warp::{
     http::StatusCode,
     Filter,
+    reject::Reject,
     Rejection,
     Reply,
 };
 
 const MAX_CHARS: usize = 4000;
+
+#[derive(Debug)]
+struct NothingToRepeat;
+
+impl Reject for NothingToRepeat {}
 
 #[tokio::main]
 async fn main() {
@@ -32,19 +38,17 @@ fn spam() -> impl Filter<Extract = impl Reply, Error = Rejection> + Clone {
         .and(warp::path::end())
         .and(warp::body::content_length_limit(2 * MAX_CHARS as u64))
         .and(warp::body::json())
-        .map(|mut terms: Vec<String>| {
-            terms.retain(|x| !x.is_empty());
+        .and_then(|mut terms: Vec<String>| {
+            async move {
+                terms.retain(|x| !x.is_empty());
 
-            if terms.is_empty() {
-                return warp::reply::with_status(
-                    "Nothing to repeat".to_string(),
-                    StatusCode::UNPROCESSABLE_ENTITY)
-            }
+                if terms.is_empty() {
+                    return Err(warp::reject::custom(NothingToRepeat));
+                }
 
-            let mut used = 0;
+                let mut used = 0;
 
-            warp::reply::with_status(
-                terms
+                Ok(terms
                     .iter()
                     .cycle()
                     .take_while(|&x| {
@@ -52,9 +56,20 @@ fn spam() -> impl Filter<Extract = impl Reply, Error = Rejection> + Clone {
                         used <= MAX_CHARS
                     })
                     .map(|x| { x.as_str() })
-                    .collect::<String>(),
-                StatusCode::OK)
+                    .collect::<String>())
+            }
         })
+        .recover(handle_rejection)
+}
+
+async fn handle_rejection(err: Rejection) -> Result<impl Reply, Rejection> {
+    if let Some(_) = err.find::<NothingToRepeat>() {
+        Ok(warp::reply::with_status("Nothing to repeat",
+                StatusCode::UNPROCESSABLE_ENTITY))
+    } else {
+        // Use default error handler
+        Err(err)
+    }
 }
 
 // Tests are in tests.rs
