@@ -4,14 +4,14 @@ let
 
   inherit (nixpkgs) pkgs;
 
-  f = { mkDerivation, base, http-types, scotty, stdenv, text }:
+  f = { mkDerivation, base, stdenv, text, yesod-core }:
       mkDerivation {
         pname = "PSaaS-hs";
-        version = "0.1.0.0";
+        version = "0.2.0.0";
         src = ./.;
         isLibrary = false;
         isExecutable = true;
-        executableHaskellDepends = [ base http-types scotty text ];
+        executableHaskellDepends = [ base text yesod-core ];
         description = "Parrots as a service";
         license = "unknown";
         hydraPlatforms = stdenv.lib.platforms.none;
