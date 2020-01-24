@@ -1,0 +1,15 @@
+[package]
+name = "PSaaS"
+version = "0.1.0"
+authors = ["Andrew Gunnerson <andrew.gunnerson@us.ibm.com>"]
+edition = "2018"
+
+[profile.release]
+opt-level = 3
+
+[dependencies]
+actix-rt = "1.0.0"
+actix-service = "1.0.5"
+actix-web = "2.0.0"
+log = "0.4.8"
+pretty_env_logger = "0.3.1"
