@@ -101,6 +101,13 @@ groovy parrot_spam.groovy :parrotwave1: :parrotwave2: :parrotwave3: :parrotwave4
 
 Haskell
 -------
+```sh
+# Install GHCup.  Then,
+stack runghc ParrotSpam.hs :parrotwave1: :parrotwave2: :parrotwave3: :parrotwave4: :parrotwave5: :parrotwave6: :parrotwave7:
+```
+
+Haskell (Parrots as a Service)
+------------------------------
 
 ```sh
 # Install Nix by piping the internet into bash.  Good stuff.  Then,
