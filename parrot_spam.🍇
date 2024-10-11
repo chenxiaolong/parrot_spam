@@ -1,0 +1,33 @@
+🏁 ➡️ 🔢 🍇
+    🎞 🐇 💻 ❗️ ➡️ args
+    📏 args ❓ ➡️ num_args
+    0 ➡️ 🖍🆕 num_bytes
+
+    🔂 i 🆕⏩ 1 num_args ❗️ 🍇
+        num_bytes ➕ 📐 🐽 args i ❗️ ❗️ ➡️ 🖍 num_bytes
+    🍉
+
+    ↪️ num_bytes 🙌 0 🍇
+        😀 🔤Nothing to repeat🔤 ❗️
+        ↩️ 1
+    🍉
+
+    4000 ➡️ 🖍🆕 avail
+
+    🔁 👍 🍇
+        🔂 i 🆕⏩ 1 num_args ❗️ 🍇
+            ↪️ avail ▶️🙌 📐 🐽 args i ❗️ ❗️ 🍇
+                👄 🐽 args i ❗️ ❗️
+                avail ➖ 📐 🐽 args i ❗️ ❗️ ➡️ 🖍 avail
+            🍉
+            🙅 🍇
+                😀 🔤🔤 ❗️
+                ↩️ 0
+            🍉
+        🍉
+    🍉
+
+    💭 Unreachable, but emojicodec can't detect that. There's no support for
+    💭 break/continue yet. https://github.com/emojicode/emojicode/issues/153
+    ↩️ 0
+🍉
