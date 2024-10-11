@@ -18,7 +18,7 @@ def spam(avail):
     {input: ., output: "", avail: avail, index: 0} | _spam | .output
 ;
 
-$ARGS.positional
+$ARGS.positional | map(select(length > 0))
 
 | if . == [] then
     "Nothing to repeat\n" | halt_error(1)
