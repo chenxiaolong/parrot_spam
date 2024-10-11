@@ -16,10 +16,7 @@ def main():
 
     for item in itertools.cycle(items):
         if avail >= len(item):
-            if sys.version_info.major >= 3:
-                sys.stdout.buffer.write(item)
-            else:
-                sys.stdout.write(item)
+            sys.stdout.write(item)
             avail -= len(item)
         else:
             break
