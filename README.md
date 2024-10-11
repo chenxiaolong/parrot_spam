@@ -72,6 +72,14 @@ brew install elixir
 elixir parrot_spam.exs :parrotwave1: :parrotwave2: :parrotwave3: :parrotwave4: :parrotwave5: :parrotwave6: :parrotwave7:
 ```
 
+Emojicode (🍇)
+--------------
+
+```sh
+emojicodec parrot_spam.🍇
+./parrot_spam :parrotwave1: :parrotwave2: :parrotwave3: :parrotwave4: :parrotwave5: :parrotwave6: :parrotwave7:
+```
+
 F#
 --
 
