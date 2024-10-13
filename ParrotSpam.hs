@@ -1,5 +1,4 @@
 import           Data.Function      ((&))
-import           Data.List          (scanl')
 import           Data.List.NonEmpty (NonEmpty, nonEmpty)
 import qualified Data.List.NonEmpty as NE
 import           Data.Maybe         (mapMaybe)
