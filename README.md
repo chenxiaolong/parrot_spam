@@ -204,3 +204,10 @@ Tcl
 ```sh
 ./parrot_spam.tcl :parrotwave1: :parrotwave2: :parrotwave3: :parrotwave4: :parrotwave5: :parrotwave6: :parrotwave7:
 ```
+
+YAMLScript
+----------
+
+```sh
+ys parrot-spam.ys :parrotwave1: :parrotwave2: :parrotwave3: :parrotwave4: :parrotwave5: :parrotwave6: :parrotwave7:
+```
