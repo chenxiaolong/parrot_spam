@@ -1,0 +1,24 @@
+!yamlscript/v0
+
+args =:
+  or:
+    not-empty:
+      remove: empty? ARGS
+    die: 'Nothing to repeat'
+
+defn spam(parrots char-limit):
+  parrots =:
+    map: \([%1 (len %1)]) parrots
+  parrots =:
+    cycle: parrots
+  parrots =:
+    reductions _ parrots:
+      fn([_ used] [p size]): +[p (used + size)]
+  parrots =:
+    take-while: \(%1.1 <= char-limit) parrots
+  parrots =:
+    map: first parrots
+  join: +"" parrots
+
+say:
+  spam: args 4000
