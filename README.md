@@ -148,6 +148,13 @@ jq
 ./parrot_spam.jq :parrotwave1: :parrotwave2: :parrotwave3: :parrotwave4: :parrotwave5: :parrotwave6: :parrotwave7:
 ```
 
+OCaml
+-----
+
+```sh
+ocaml parrot_spam.ml :parrotwave1: :parrotwave2: :parrotwave3: :parrotwave4: :parrotwave5: :parrotwave6: :parrotwave7:
+```
+
 Perl 5
 ------
 
