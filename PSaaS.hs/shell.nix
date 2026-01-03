@@ -4,14 +4,14 @@ let
 
   inherit (nixpkgs) pkgs;
 
-  f = { mkDerivation, base, stdenv, text, yesod-core }:
+  f = { mkDerivation, stdenv, infinite-list, non-empty-text, yesod-core }:
       mkDerivation {
         pname = "PSaaS-hs";
-        version = "0.2.0.0";
+        version = "0.3.0.0";
         src = ./.;
         isLibrary = false;
         isExecutable = true;
-        executableHaskellDepends = [ base text yesod-core ];
+        executableHaskellDepends = [ infinite-list non-empty-text yesod-core ];
         description = "Parrots as a service";
         license = "unknown";
         hydraPlatforms = stdenv.lib.platforms.none;

@@ -107,23 +107,25 @@ Groovy
 groovy parrot_spam.groovy :parrotwave1: :parrotwave2: :parrotwave3: :parrotwave4: :parrotwave5: :parrotwave6: :parrotwave7:
 ```
 
-Haskell
--------
-```sh
-# Install GHCup.  Then,
-stack runghc ParrotSpam.hs :parrotwave1: :parrotwave2: :parrotwave3: :parrotwave4: :parrotwave5: :parrotwave6: :parrotwave7:
-```
-
 Haskell (Parrots as a Service)
 ------------------------------
 
 ```sh
 # Install Nix by piping the internet into bash.  Good stuff.  Then,
 cd PSaaS.hs
-nix-shell -p 'runghc src/Main.hs'
+nix-shell -p 'cabal new-run'
 
 # In another terminal,
-curl -X GET -H 'Content-Type: application/json' --data '["parrotwave1","parrotwave2","parrotwave3","parrotwave4","parrotwave5","parrotwave5","parrotwave6","parrotwave7"]' localhost:8080
+curl -X GET --compressed -H 'Content-Type: application/json' localhost:8080 --data '[
+    "parrotwave1",
+    "parrotwave2",
+    "parrotwave3",
+    "parrotwave4",
+    "parrotwave5",
+    "parrotwave5",
+    "parrotwave6",
+    "parrotwave7"
+]'
 ```
 
 Java

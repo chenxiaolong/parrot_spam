@@ -1,21 +1,43 @@
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE QuasiQuotes #-}
+{-# LANGUAGE RecordWildCards #-}
 {-# LANGUAGE TemplateHaskell #-}
 {-# LANGUAGE TypeFamilies #-}
+{-# LANGUAGE ViewPatterns #-}
 
 module Main where
 
-import           Control.Monad (when)
-import           Data.Text     (Text)
-import qualified Data.Text     as T
+import           Conduit            ((.|), Flush(Chunk), mapC, yieldMany)
+import           Control.Monad      (when)
+import           Data.Aeson
+import qualified Data.List.Infinite as Inf
+import           Data.List.NonEmpty (NonEmpty, nonEmpty)
+import           Data.Maybe         (mapMaybe)
+import           Data.NonEmptyText  (NonEmptyText)
+import qualified Data.NonEmptyText  as NEText
+import           Data.Text.Encoding (encodeUtf8Builder)
 import           Yesod.Core
 
-spam :: Int -> [Text] -> Text
-spam numChars parrots = T.concat $ go numChars parrots
-    where
-    go n (p : ps) =
-        let n' = n - T.length p
-        in if n' < 0 then [] else p : go n' ps
+spam :: SpamRequest -> [NonEmptyText]
+spam SpamRequest{..} =
+    let f parrot r (subtract (NEText.length parrot) -> remaining) =
+            if remaining < 0 then [] else parrot : r remaining
+    in Inf.foldr f (Inf.cycle spamRequestParrots) spamRequestTotal
+
+data SpamRequest = SpamRequest{
+    spamRequestTotal   :: Int,
+    spamRequestParrots :: NonEmpty NonEmptyText}
+instance FromJSON SpamRequest where
+    parseJSON = withObject "spam request" $ \o -> do
+        spamRequestTotal <- o .:? "total" .!= 4000
+        when (spamRequestTotal < 0) $ fail "Negative total requested"
+
+        spamRequestParrots <- do
+            rawParrots <- o .: "parrots"
+            maybe (fail "Nothing to repeat") return $
+                nonEmpty $ mapMaybe NEText.fromText rawParrots
+
+        return SpamRequest{..}
 
 data ParrotSpam = ParrotSpam
 
@@ -25,13 +47,15 @@ mkYesod "ParrotSpam" [parseRoutes|
 
 instance Yesod ParrotSpam
 
-getParrotSpamR :: Handler Text
+getParrotSpamR :: Handler (ContentType, Content)
 getParrotSpamR = do
-    parrots <- filter (not . T.null) <$> requireCheckJsonBody
-    when (null parrots) $ do
-        invalidArgs ["Nothing to repeat"]
+    spamRequest <- requireCheckJsonBody
 
-    return $ spam 4000 $ cycle parrots
+    let parrots = spam spamRequest
+        source = yieldMany parrots
+            .| mapC (Chunk . encodeUtf8Builder . NEText.toText)
+
+    return (typePlain, ContentSource source)
 
 main :: IO ()
 main = warp 8080 ParrotSpam
