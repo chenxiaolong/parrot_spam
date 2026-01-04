@@ -111,21 +111,15 @@ Haskell (Parrots as a Service)
 ------------------------------
 
 ```sh
-# Install Nix by piping the internet into bash.  Good stuff.  Then,
+# Install Stack either directly or via GHCup. Then,
 cd PSaaS.hs
-nix-shell -p 'cabal new-run'
+stack run
 
 # In another terminal,
-curl -X GET --compressed -H 'Content-Type: application/json' localhost:8080 --data '[
-    "parrotwave1",
-    "parrotwave2",
-    "parrotwave3",
-    "parrotwave4",
-    "parrotwave5",
-    "parrotwave5",
-    "parrotwave6",
-    "parrotwave7"
-]'
+curl -X GET -H 'Content-Type: application/json' http://localhost:8080 --data '{
+    "total": 4000,
+    "parrots": ["parrotwave1", "parrotwave2", "parrotwave3", "parrotwave4", "parrotwave5", "parrotwave5", "parrotwave6", "parrotwave7"]
+}'
 ```
 
 Java
