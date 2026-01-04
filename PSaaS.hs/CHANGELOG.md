@@ -1,5 +1,13 @@
 # Revision history for PSaaS-hs
 
+## 0.3.1.0
+
+* Stack instead of Nix for building.
+* `Data.ByteString.Builder` to improve performance.
+  * 95MiB/s
+  * 70MiB/s for 4 requests
+  * Slightly higher memory usage
+
 ## 0.3.0.0
 
 * More type safety (`Data.List.Infinite`, `Data.List.NonEmpty`, `Data.Text,NonEmpty`)

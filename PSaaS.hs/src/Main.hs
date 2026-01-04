@@ -7,21 +7,24 @@
 
 module Main where
 
-import           Conduit            ((.|), Flush(Chunk), mapC, yieldMany)
-import           Control.Monad      (when)
+import           Control.Monad           (when)
 import           Data.Aeson
-import qualified Data.List.Infinite as Inf
-import           Data.List.NonEmpty (NonEmpty, nonEmpty)
-import           Data.Maybe         (mapMaybe)
-import           Data.NonEmptyText  (NonEmptyText)
-import qualified Data.NonEmptyText  as NEText
-import           Data.Text.Encoding (encodeUtf8Builder)
+import           Data.ByteString.Builder (Builder)
+import qualified Data.List.Infinite      as Inf
+import           Data.List.NonEmpty      (NonEmpty, nonEmpty)
+import           Data.Maybe              (mapMaybe)
+import           Data.NonEmptyText       (NonEmptyText)
+import qualified Data.NonEmptyText       as NEText
+import           Data.Text.Encoding      (encodeUtf8Builder)
 import           Yesod.Core
 
-spam :: SpamRequest -> [NonEmptyText]
+toBuilder :: NonEmptyText -> Builder
+toBuilder = encodeUtf8Builder . NEText.toText
+
+spam :: SpamRequest -> Builder
 spam SpamRequest{..} =
     let f parrot r (subtract (NEText.length parrot) -> remaining) =
-            if remaining < 0 then [] else parrot : r remaining
+            if remaining < 0 then "" else toBuilder parrot <> r remaining
     in Inf.foldr f (Inf.cycle spamRequestParrots) spamRequestTotal
 
 data SpamRequest = SpamRequest{
@@ -47,15 +50,13 @@ mkYesod "ParrotSpam" [parseRoutes|
 
 instance Yesod ParrotSpam
 
-getParrotSpamR :: Handler (ContentType, Content)
+getParrotSpamR :: Handler (DontFullyEvaluate RepPlain)
 getParrotSpamR = do
     spamRequest <- requireCheckJsonBody
 
     let parrots = spam spamRequest
-        source = yieldMany parrots
-            .| mapC (Chunk . encodeUtf8Builder . NEText.toText)
 
-    return (typePlain, ContentSource source)
+    return $ DontFullyEvaluate $ RepPlain $ ContentBuilder parrots Nothing
 
 main :: IO ()
 main = warp 8080 ParrotSpam
