@@ -12,7 +12,7 @@ name:                PSaaS-hs
 -- PVP summary:      +-+------- breaking API changes
 --                   | | +----- non-breaking API additions
 --                   | | | +--- code changes with no API change
-version:             0.2.0.0
+version:             0.3.1.0
 
 -- A short (one-line) description of the package.
 synopsis:            Parrots as a service
@@ -26,15 +26,12 @@ synopsis:            Parrots as a service
 -- The license under which the package is released.
 license:             NONE
 
--- The file containing the license text.
-license-file:        LICENSE
-
 -- The package author(s).
-author:              Shlomo Shuck
+author:              Steven Shuck
 
 -- An email address to which users can send suggestions, bug reports, and
 -- patches.
-maintainer:          sjshuck@us.ibm.com
+maintainer:          stevenjshuck@gmail.com
 
 -- A copyright notice.
 -- copyright:
@@ -57,7 +54,11 @@ executable PSaaS-hs
   -- other-extensions:
 
   -- Other library packages from which modules are imported.
-  build-depends:       base ^>=4.12.0.0,
+  build-depends:       aeson,
+                       base >=4.12,
+                       bytestring,
+                       infinite-list,
+                       non-empty-text,
                        text,
                        yesod-core
 
@@ -67,4 +68,6 @@ executable PSaaS-hs
   -- Base language which the package is written in.
   default-language:    Haskell2010
 
-  ghc-options:         -O2 -threaded
+  ghc-options:         -threaded
+                       -rtsopts
+                       -with-rtsopts=-N
